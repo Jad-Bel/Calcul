@@ -11,62 +11,66 @@ void addition() {
 
     for(int i = 0; i < n; i++){
         printf("Entrer le numero %d: ", i+1);
-        scnaf("%d", &num);
+        scanf("%d", &num);
         sum += num;
     }
 
-    printf("La so,,e est: %.2f\n", sum);
+    printf("La somme est: %.2f\n", sum);
 }
 
 void soustraction() {
     int a,b;
     printf("Entrer le premier nombre: ");
-    scnaf("%d", &a); 
+    scanf("%d", &a); 
     printf("Entrer le deuxieme nombre: ");
-    scnaf("%d", &b); 
+    scanf("%d", &b); 
 
     printf("La difference est: %d\n", a - b);   
 }
 
 void multiplication() {
     int n, num;
-    long long produit;
+    long long produit = 1;
 
-        printf("\nCombien de nombres voulez-vous multiplier? ");
-        scanf("%d", &n);
+    printf("\nCombien de nombres voulez-vous multiplier? ");
+    scanf("%d", &n);
 
-        for(int i = 0; i < n; i++){
-            printf("Entrer le numero %d: ", i+1);
-            scanf("%d", &num);
-            produit *= num;
-    } printf("Le produit est: %lld\n", produit);
+    for(int i = 0; i < n; i++){
+        printf("Entrer le numero %d: ", i+1);
+        scanf("%d", &num);
+        produit *= num;
+    }
+    printf("Le produit est: %lld\n", produit);
 }
 
 void division() {
     double a, b;
 
     printf("Entrer le premier nombre: ");
-    scnaf("%lf", &a); 
+    scanf("%lf", &a); 
     printf("Entrer le deuxieme nombre: ");
-    scnaf("%lf", &b);
+    scanf("%lf", &b);
 
     if(b != 0) {
-        printf("Le resultat de la division est: %lf", a/b);
+        printf("Le resultat de la division est: %lf\n", a/b);
+    } else {
+        printf("Erreur: Division par zéro.\n");
     }
 }
 
 void moyenne() {
-    int n, num;
-    float sum=0;
+    int n; float num;
+    float sum = 0;
 
-    printf("\nCombien de nombre voudre-vouz calculer leur moyenne: ");
+    printf("\nCombien de nombre voulez-vous pour la moyenne: ");
     scanf("%d", &n);
 
     for(int i = 0; i < n; i++){
-        printf("Entrer le nombre %d", i+1);
+        printf("Entrer le nombre %d: ", i+1);
+        scanf("%f", &num);
         sum += num;
     }
-    printf("La moyenne est %.2f", sum / n);
+    printf("La moyenne est: %.2f\n", sum / n);
 }
 
 void valeurAbso() {
@@ -75,7 +79,7 @@ void valeurAbso() {
     printf("Entrer un nombre: ");
     scanf("%d", &num);
 
-    printf("La valeur absolue du %d, est: %d", num, abs(num));
+    printf("La valeur absolue de %d est: %d\n", num, abs(num));
 }
 
 void exponentiation() {
@@ -84,28 +88,27 @@ void exponentiation() {
 
     printf("Entrer la base: ");
     scanf("%d", &base);
-    printf("Entrer l'exposant");
+    printf("Entrer l'exposant: ");
     scanf("%d", &expo);
 
     for(int i = 0; i < expo; i++) {
         result *= base;
-    } printf("%d ^ %d = %.2lf\n", base, expo, result);
+    }
+    printf("%d ^ %d = %.2lf\n", base, expo, result);
 }
 
-void racinne_carree() {
-    float num;
+void racine_carree() {
+    float num = -1;
 
-    do {
-        if(num <= 0) {
-            printf("Entrer un nombre positif: ");
-            scanf("%f", &num);
-            printf("Number invalid. Saisir un nombre positif.");
+    while (num < 0) {
+        printf("Entrer un nombre positif: ");
+        scanf("%f", &num);
+        if(num < 0) {
+            printf("Nombre invalide. Veuillez saisir un nombre positif.\n");
         }
-    }while(num < 0);
+    }
 
-    if(num >= 0) {
-        printf("La racine carree de %.2f est: %.2f\n", num, sqrt(num));
-    } 
+    printf("La racine carrée de %.2f est: %.2f\n", num, sqrt(num));
 }
 
 int main() {
@@ -122,24 +125,23 @@ int main() {
         printf("7. Exponentiation\n");
         printf("8. Racine carrée\n");
         printf("9. Quitter\n");
-        printf("Choisiser une option: ");
+        printf("Choisissez une option: ");
         scanf("%d", &choix);
     
-    switch (choix) {
-        case 1 : addition(); break;
-        case 2 : soustraction(); break;
-        case 3 : multiplication(); break;
-        case 4 : division(); break;
-        case 5 : moyenne(); break;
-        case 6 : valeurAbso(); break;
-        case 7 : exponentiation(); break;
-        case 8 : racinne_carree(); break;
-        case 9 : printf("Quitter....\n"); break;
-        default : printf("Choix invalide."); break;
-
+        switch (choix) {
+            case 1: addition(); break;
+            case 2: soustraction(); break;
+            case 3: multiplication(); break;
+            case 4: division(); break;
+            case 5: moyenne(); break;
+            case 6: valeurAbso(); break;
+            case 7: exponentiation(); break;
+            case 8: racine_carree(); break;
+            case 9: printf("Quitter....\n"); break;
+            default: printf("Choix invalide.\n"); break;
         }
         
-    }while (choix != 9);
+    } while (choix != 9);
 
     return 0;
 }
